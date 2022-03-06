@@ -31,6 +31,7 @@ dependencies {
     // gradle 7.0 (2021.4.9.) -> delete
     // change -> implementation, runtimeOnly, testImplementation, testRuntimeOnly
     implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.projectlombok:lombok')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
