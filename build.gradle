@@ -32,6 +32,8 @@ dependencies {
     // change -> implementation, runtimeOnly, testImplementation, testRuntimeOnly
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.projectlombok:lombok')
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa:')
+    implementation('com.h2database:h2')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
