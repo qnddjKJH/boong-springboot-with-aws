@@ -4,3 +4,5 @@
 .gradle
 .idea
 out
+
+application-oauth.yml
