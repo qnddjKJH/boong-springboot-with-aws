@@ -4,7 +4,6 @@ buildscript {
     }
     repositories {
         mavenCentral()
-        jcenter()
     }
 
     dependencies {
@@ -23,7 +22,6 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
@@ -31,10 +29,12 @@ dependencies {
     // gradle 7.0 (2021.4.9.) -> delete
     // change -> implementation, runtimeOnly, testImplementation, testRuntimeOnly
     implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('org.projectlombok:lombok')
     implementation('org.springframework.boot:spring-boot-starter-data-jpa:')
-    implementation('com.h2database:h2')
     implementation('org.springframework.boot:spring-boot-starter-mustache')
+    implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
+    implementation('org.springframework.session:spring-session-jdbc')
+    implementation('org.projectlombok:lombok')
+    implementation('com.h2database:h2')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 

@@ -8,3 +8,9 @@ spring:
   h2:
     console:
       enabled: true
+
+  profiles:
+    include: oauth
+
+  session:
+    store-type: jdbc
