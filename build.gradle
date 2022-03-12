@@ -1,20 +1,30 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.7.RELEASE'
-    }
-    repositories {
-        mavenCentral()
-    }
+//buildscript {
+//    ext {
+//        springBootVersion = '2.1.4.RELEASE'
+//    }
+//    repositories {
+//        mavenCentral()
+//    }
+//
+//    dependencies {
+//        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+//    }
+//}
+//
+//apply plugin: 'java'
+//apply plugin: 'eclipse'
+//apply plugin: 'org.springframework.boot'
+//apply plugin: 'io.spring.dependency-management'
 
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-    }
+// ▲ legacy plugin application
+
+// plugins DSL:
+plugins {
+    id "org.springframework.boot" version "2.1.4.RELEASE"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "java"
+    id "eclipse"
 }
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group 'com.boong.book'
 version '1.0-SNAPSHOT'
@@ -33,15 +43,43 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-mustache')
     implementation('org.springframework.boot:spring-boot-starter-oauth2-client')
     implementation('org.springframework.session:spring-session-jdbc')
-    implementation('org.projectlombok:lombok')
     implementation('com.h2database:h2')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    // SpringBoot 2.2.x 이상 부터는 junit5 가 기본 제공한다.
+    // ./gradlew test 로 실행하면 어마어마한 에러가 뜨는데
+    // 그 중 하나는 gradle 버전업에 따른 lombok 설정이고
+    // junit4와 junit5 버전업에 따른 호환성 문제이다
+    // https://donghyeon.dev/junit/2021/04/11/JUnit5-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C/
+    // 위 링크에 junit5 에 대해 아주 상세히 적혀있고
+    // 호환성 문제가 일어나는 junit platform 부분도 찾을 수 있었다.
+    // 문제는 간단히 해결 가능하다. testRuntimeOnly 로 junit-vintage-engine 의존성을 추가해준다.
+    // Junit3, 4 구버전 호환이 가능해 진다.
+    // junit4 만을 사용하고 싶을 땐 spring-boot-starter-test 에서 junit 을 exclude 한다.
+    // junit4 기반으로 작성하고 싶을 때는
+    // testImplementation == Junit platform {Junit4(junit:junit:version, Junit5(junit-jupiter-api} 의존성을
+    // testRuntimeOnlu == Junit TestEngine 구현체 {Junit4(junit-vintage-engine), Junit5(junit-jupiter-engine)}를 설정 해준다.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    // junit4 호환성
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.2'
+    // 현재 설정된 것은 Junit4 부터 Junit5 까지 전부 쓸 수 있는 상태이다.
+    // 솔직히 Junit 의존성만 지우면 Junit4 기반 환경이 설정된다
+    // Junit4 가 없는데?? ==> Junit4 는 spring-boot-starter-test 에 기본 탑재되어있다.(현재 2.1.4 ver)
+
+
+    // gradle 6 이상부터 Lombok 을 특별히 신경써주자
+    implementation('org.projectlombok:lombok')
+    testImplementation('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 }
 
-test {
-    useJUnitPlatform()
+// gradle 5 이상부터 Annotation 구별해서 추가해줘야함 
+// gradle task 로 실행하면 annotation 기능 못함
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
