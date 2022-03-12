@@ -46,6 +46,7 @@ dependencies {
     implementation('com.h2database:h2')
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation('org.springframework.security:spring-security-test')
 
     // SpringBoot 2.2.x 이상 부터는 junit5 가 기본 제공한다.
     // ./gradlew test 로 실행하면 어마어마한 에러가 뜨는데
