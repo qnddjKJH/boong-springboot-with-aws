@@ -13,7 +13,8 @@ IntelliJ, JPA, Junit TEST, gradle, 소셜 로그인(OAuth2), AWS Infra 로 무�
 - [x] 5장 스프링 시큐리티와 OAuth 2.0 으로 로그인 기능 구현하기
 - [x] 6장 AWS 서버 환경을 만들어보자 - AWS EC2
 - [x] 7장 AWS 에 데이터베이스 환경을 만들어 보자 - AWS RDS
-- [ ] 8장 EC2 서버에 프로젝트를 배포해 보자
+- [x] 8장 EC2 서버에 프로젝트를 배포해 보자
+- [ ] 9장 Travis CI 배포 자동화
 
 ----
 ## 환경
@@ -22,3 +23,8 @@ IntelliJ, JPA, Junit TEST, gradle, 소셜 로그인(OAuth2), AWS Infra 로 무�
 - JPA
 - MariaDB
 - h2 (dev)
+
+
+### Travis CI 배포 자동화
+GitHub -> Travis CI (빌드 결과물 : jar 파일) -> AWS S3 (jar 파일 저장)
+-> Travis CI (배포 요청) -> AWS CodeDeploy (S3 에 저장된 jar 파일 배포) -> AWS EC2 -> SpringBoot(인스턴스 내부) <- 사용자 
