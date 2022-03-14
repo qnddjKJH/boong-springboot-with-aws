@@ -17,6 +17,22 @@ script: "./gradlew clean build"
 before_install:
   - chmod +x gradlew
 
+before_deploy:
+  - zip -r boong-springboot2-webservice *
+  - mkdir -p deploy
+  - mv boong-springboot2-webservice.zip deploy/boong-springboot2-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repo setting 에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo setting 에 설정된 값
+    bucket: boong-springboot-build # S3 버킷
+    region: ap-northeast-2 # AWS 서울
+    skip_cleanup: true
+    acl: private # zip 파일 접근을 private 로
+    local_dir: deploy # before_deploy 에서 생성한 디렉토리
+    wait-until-deployed: true
+
 # CI 실행 완료 시 이메일 알람
 notifications:
   email:
