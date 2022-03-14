@@ -32,6 +32,17 @@ deploy:
     acl: private # zip 파일 접근을 private 로
     local_dir: deploy # before_deploy 에서 생성한 디렉토리
     wait-until-deployed: true
+  
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: boong-springboot-build
+    key: boong-springboot2-webservice.zip
+    bundle_type: zip
+    application: boong-springboot2-service  # 웹 콘솔(codedeploy) 에서 등록한 code deploy 애플리케이션
+    deployment_group: boong-springboot2-service-group # 웹 콘솔(codedeploy) 에서 등록한 code deploy 배포 그룹
+    region: ap-northeast-2
+    wait-until-deployed: true
 
 # CI 실행 완료 시 이메일 알람
 notifications:
