@@ -9,8 +9,9 @@ spring:
     console:
       enabled: true
 
-  profiles:
-    include: oauth
+# 이거 때문에 security config test 할때 oauth 값이 나와서 테스트 실패했음
+#  profiles:
+#    include: oauth
 
   session:
     store-type: jdbc

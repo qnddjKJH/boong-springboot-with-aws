@@ -14,15 +14,27 @@ IntelliJ, JPA, Junit TEST, gradle, 소셜 로그인(OAuth2), AWS Infra 로 무�
 - [x] 6장 AWS 서버 환경을 만들어보자 - AWS EC2
 - [x] 7장 AWS 에 데이터베이스 환경을 만들어 보자 - AWS RDS
 - [x] 8장 EC2 서버에 프로젝트를 배포해 보자
-- [ ] 9장 Travis CI 배포 자동화
+- [x] 9장 Travis CI 배포 자동화
+- [ ] 10장 무중단 배포
+    * 무중단 배포: 서비스를 중지 하지 않고 배포를 하는 것
+
 
 ----
-## 환경
+## tools
 - Spring Boot 2.1.4.RELEASE
 - Mustache
 - JPA
 - MariaDB
 - h2 (dev)
+- Cloud
+  * AWS
+    * EC2
+    * RDS
+    * S3
+    * CodeDeploy
+    * IAM (S3, CodeDeploy)
+  * Travis CI
+  * Nginx
 
 
 ### Travis CI 배포 자동화
