@@ -25,9 +25,6 @@ before_deploy:
   - cd before-deploy && zip -r before-deploy * # before-deploy 이동 후 전체 압축
   - cd ../ && mkdir -p deploy # 상위 디렉토리 이동후 deploy 디렉토리 생성
   - mv before-deploy/before-deploy.zip deploy/boong-springboot2-webservice.zip # deploy 디렉토리로 zip 파일 이동
-  - zip -r boong-springboot2-webservice *
-  - mkdir -p deploy
-  - mv boong-springboot2-webservice.zip deploy/boong-springboot2-webservice.zip
 
 deploy:
   - provider: s3
