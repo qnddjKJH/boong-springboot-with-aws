@@ -15,7 +15,7 @@ IntelliJ, JPA, Junit TEST, gradle, 소셜 로그인(OAuth2), AWS Infra 로 무�
 - [x] 7장 AWS 에 데이터베이스 환경을 만들어 보자 - AWS RDS
 - [x] 8장 EC2 서버에 프로젝트를 배포해 보자
 - [x] 9장 Travis CI 배포 자동화
-- [ ] 10장 무중단 배포
+- [x] 10장 무중단 배포
     * 무중단 배포: 서비스를 중지 하지 않고 배포를 하는 것
 
 
