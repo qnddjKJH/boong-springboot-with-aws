@@ -1,9 +1,10 @@
+#!/bin/bash
+
 # Travis, CI, S3, CodeDeploy 연동 성공
 # 실제 Jar 배포 및 실행
 
 # 배포 자동화 구성
 
-#!/bin/bash
 REPOSITORY=/home/ec2-user/app/step2
 PROJECT_NAME=boong-springboot2-webservice
 
