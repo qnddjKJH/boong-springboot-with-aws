@@ -2,7 +2,6 @@ package com.boong.book.springboot.web.dto;
 
 import com.boong.book.springboot.domain.posts.Posts;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
 public class PostsResponseDto {
