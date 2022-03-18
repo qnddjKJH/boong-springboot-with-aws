@@ -4,7 +4,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/app/step2/zip/
+    destination: /home/ec2-user/app/step3/zip/
     overwirte: yes
 
 permissions:
@@ -16,5 +16,10 @@ permissions:
 hooks:
   ApplicationStart:
     - location: deploy.sh
+      timeout: 60
+      runas: ec2-user
+
+  ApplicationService:
+    - location: health.sh # 새 스프링 부트가 정상 실행됬는지 확인
       timeout: 60
       runas: ec2-user
